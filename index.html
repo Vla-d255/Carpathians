@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#12261f">
+<title>Карпати</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--spruce:#1d3b30;--dark:#12261f;--hay:#e3a72f;--mist:#e9efeb;--snow:#fbfcfb;--ink:#22302a;--head:#1d3b30;--card:#fff;--muted:#52625a;color-scheme:light}
+:root:has(#themeT:checked){--mist:#15231c;--snow:#0e1813;--ink:#dfe8e2;--head:#d4e6da;--card:#1b2c23;--muted:#a3b5aa;color-scheme:dark}
+html{scroll-behavior:smooth}
+html:has(.pmodal:target),html:has(.lb:target){overflow:hidden}
+body{overflow-x:clip;-webkit-text-size-adjust:100%;font-family:'Manrope',sans-serif;color:var(--ink);background:var(--snow);line-height:1.7}
+h1,h2,h3,h4,.brand{font-family:'Playfair Display',serif}
+a{color:inherit}
+section{padding:5rem 0;scroll-margin-top:64px}
+.section-title{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;color:var(--head)}
+.lead-small{max-width:620px;color:var(--muted)}
+.bg-mist{background:var(--mist)}
+.vh{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.btn-hay{display:inline-block;background:var(--hay);color:var(--dark);font-weight:700;padding:.8rem 1.8rem;border-radius:50px;text-decoration:none}
+.btn-hay:hover{background:#f0b94a;color:var(--dark)}
+.navbar{background:rgba(18,38,31,.93);backdrop-filter:blur(6px);padding-top:env(safe-area-inset-top)}
+.navbar .nav-link{color:#fff;font-weight:500}
+.navbar .nav-link:hover{color:var(--hay)}
+.brand{color:#fff;font-weight:800;font-size:1.4rem;text-decoration:none}
+.navbar-toggler{cursor:pointer}.navbar-toggler-icon{filter:invert(1)}
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s}
+.theme-btn:hover{background:var(--hay);border-color:var(--hay);color:var(--dark)}
+@media(max-width:1399.98px){.navbar-collapse{display:none;padding:1rem 0;max-height:calc(100svh - 70px);overflow-y:auto}#navT:checked ~ .navbar-collapse{display:block}}
+
+.hero{position:relative;height:100vh;height:100svh;min-height:520px;overflow:hidden;background:var(--spruce)}
+.slides,.slide{position:absolute;inset:0}
+.slide{background-image:var(--m);background-size:cover;background-position:center;background-color:var(--spruce);opacity:0;visibility:hidden;
+  animation:heroFade 22s infinite;animation-delay:calc(var(--i) * 5.5s - 22s)}
+.slide::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,38,31,.5),rgba(18,38,31,.82))}
+@keyframes heroFade{0%{opacity:1;visibility:visible}21%{opacity:1;visibility:visible}25%{opacity:0;visibility:hidden}96%{opacity:0;visibility:hidden}100%{opacity:1;visibility:visible}}
+@keyframes heroIn{from{opacity:0}to{opacity:1;visibility:visible}}
+.hero input:checked ~ .slides .slide{animation:none;opacity:0;visibility:hidden}
+.caption{position:absolute;inset:0;display:flex;align-items:center;color:#fff;z-index:2}
+.caption h1{font-size:clamp(2.5rem,7.5vw,5.3rem);font-weight:800;line-height:1.05}
+.caption p{font-size:clamp(1.05rem,2.2vw,1.3rem);max-width:560px;opacity:.92}
+.slide .bar{position:absolute;left:0;right:0;bottom:2.2rem;z-index:5}
+.slide .bar .container{display:flex;justify-content:flex-end;gap:12px}
+.ctrl{width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:rgba(255,255,255,.1);color:#fff;
+  display:flex;align-items:center;justify-content:center;transition:.25s;backdrop-filter:blur(4px);cursor:pointer}
+.ctrl:hover{background:var(--hay);border-color:var(--hay);color:var(--dark)}
+.dots{position:absolute;left:0;right:0;bottom:3.2rem;z-index:6;pointer-events:none}
+.dots .container{display:flex}
+.dots label{pointer-events:auto;cursor:pointer;width:34px;height:4px;border-radius:4px;background:#fff;opacity:.45;margin-right:8px;
+  animation:dotAct 22s infinite;animation-delay:calc(var(--i) * 5.5s - 22s)}
+@keyframes dotAct{0%,21%{opacity:1;background:var(--hay);width:54px}25%,96%{opacity:.45;background:#fff;width:34px}100%{opacity:1;background:var(--hay);width:54px}}
+.hero input:checked ~ .dots label{animation:none;opacity:.45;background:#fff;width:34px}
+.scroll-down{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);color:#fff;z-index:5;opacity:.7;font-size:1.4rem}
+@media(prefers-reduced-motion:reduce){.slide,.dots label{animation:none}.s1{opacity:1;visibility:visible}}
+.stat{border-left:3px solid var(--hay);padding-left:1rem}
+.stat b{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--head);display:block;line-height:1.1}
+
+.fbtn{display:inline-block;border:1.5px solid var(--head);color:var(--head);font-weight:600;border-radius:50px;padding:.4rem 1.2rem;cursor:pointer;user-select:none}
+.fbtn:hover{background:var(--head);color:var(--snow)}
+.vgroup{display:inline-flex}.vgroup .fbtn{border-radius:0}
+.vgroup .fbtn:first-child{border-radius:50px 0 0 50px}.vgroup .fbtn:last-child{border-radius:0 50px 50px 0;border-left:0}
+
+/* картки місць */
+.place{display:block;position:relative;border-radius:18px;overflow:hidden;height:340px;color:#fff;text-decoration:none;background:var(--spruce);
+  box-shadow:0 8px 24px rgba(18,38,31,.18);transition:transform .3s}
+.place:hover{transform:translateY(-6px);color:#fff}
+.place img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.place:hover img{transform:scale(1.06)}
+.place::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(18,38,31,.92))}
+.place .info{position:absolute;inset:auto 0 0 0;padding:1.4rem;z-index:2}
+.place h3{margin:0;font-size:1.5rem}.place span.s{font-size:.9rem;opacity:.85}
+.tag{position:absolute;top:1rem;left:1rem;z-index:2;background:var(--hay);color:var(--dark);font-size:.75rem;font-weight:700;padding:.2rem .7rem;border-radius:50px}
+
+/* загальна карта (тайли OpenStreetMap + власні мітки) */
+.tilemap{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(18,38,31,.15);background:#ddd}
+.tiles{display:grid;line-height:0;height:100%}
+.tiles img{width:100%;height:100%;object-fit:cover;display:block}
+:root:has(#themeT:checked) .tiles{filter:brightness(.82) contrast(1.05)}
+.mpin{position:absolute;transform:translate(-50%,-50%);text-decoration:none;z-index:2}
+.mpin b{display:flex;align-items:center;justify-content:center;width:clamp(22px,3.2vw,34px);height:clamp(22px,3.2vw,34px);border-radius:50%;background:var(--hay);color:var(--dark);
+  font-size:clamp(.7rem,1.4vw,1rem);border:3px solid var(--spruce);box-shadow:0 3px 8px rgba(0,0,0,.4);transition:transform .2s}
+.mpin:hover b{transform:scale(1.2)}
+.mpin .lbl{position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:6px;white-space:nowrap;background:var(--spruce);color:#fff;
+  font-size:.8rem;font-weight:600;padding:.1rem .6rem;border-radius:50px;line-height:1.5;opacity:0;pointer-events:none;transition:opacity .2s}
+.mpin:hover .lbl{opacity:1}
+@media(min-width:768px){.mpin .lbl{opacity:1}}
+.attrib{font-size:.75rem;color:var(--muted);margin-top:.4rem}
+.chip{display:inline-flex;align-items:center;border:1.5px solid var(--head);color:var(--head);border-radius:50px;font-size:.85rem;padding:.2rem .8rem;text-decoration:none}
+.chip b{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--hay);color:var(--dark);align-items:center;justify-content:center;font-size:.75rem;margin-right:.4rem}
+.chip:hover{background:var(--head);color:var(--snow)}
+
+/* вікно місця (:target) */
+.pmodal,.lb{display:none;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;padding:1rem;background:rgba(10,20,15,.75)}
+.pmodal:target,.lb:target{display:flex}
+.pm-bg{position:absolute;inset:0}
+.pm-card{position:relative;background:var(--snow);color:var(--ink);border-radius:18px;max-width:880px;width:100%;max-height:92vh;overflow:auto}
+.pm-close{position:absolute;top:12px;right:12px;z-index:5;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--dark);display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.pm-photos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;background:var(--spruce)}
+.pm-photos img{flex:0 0 100%;height:260px;object-fit:cover;scroll-snap-align:start}
+@media(min-width:768px){.pm-photos img{flex:0 0 33.333%}}
+.pm-body{padding:1.6rem}
+.fact{background:var(--mist);border-radius:12px;padding:.7rem 1rem;height:100%}
+.fact small{color:var(--muted);display:block}
+.pm-frame iframe{width:100%;height:280px;border:0;border-radius:14px;background:var(--mist)}
+.mapbtn{font-size:.9rem;color:var(--head);text-decoration:none;font-weight:600}
+
+/* атракціони та їжа */
+.attr,.food{background:var(--card);border-radius:16px;overflow:hidden;height:100%;box-shadow:0 6px 18px rgba(18,38,31,.1)}
+.attr{transition:transform .3s}.attr:hover{transform:translateY(-5px)}
+.ph{position:relative;height:190px;background:linear-gradient(135deg,var(--spruce),#2f5a48);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:3.5rem;overflow:hidden}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.attr:hover .ph img,.food:hover .ph img{transform:scale(1.06)}
+.food .ph{height:170px}
+.card-b{padding:1.2rem 1.3rem 1.4rem}
+
+/* галерея + лайтбокс (:target) */
+.g-item{position:relative;display:block;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--spruce);text-decoration:none}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.g-item:hover img{transform:scale(1.07)}
+.g-item .cap{position:absolute;inset:auto 0 0 0;padding:1.4rem .9rem .7rem;color:#fff;font-weight:600;font-size:.95rem;background:linear-gradient(transparent,rgba(18,38,31,.85));opacity:0;transition:opacity .3s}
+.g-item:hover .cap{opacity:1}
+@media(hover:none){.g-item .cap{opacity:1}}
+.lb figure{position:relative;margin:0;max-width:1100px;width:100%}
+.lb img{width:100%;max-height:78vh;object-fit:contain;background:var(--dark);border-radius:14px}
+.lb figcaption{color:#fff;text-align:center;padding:.6rem}
+.lb .nv{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.9);color:var(--dark);display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:3}
+.lb .pv{left:10px}.lb .nx{right:10px}
+
+/* вкладки (радіо-кнопки) */
+.tabl{display:inline-block;padding:.5rem 1.1rem;border-radius:50px;font-weight:600;color:var(--head);cursor:pointer;user-select:none}
+.tabl:hover{background:rgba(127,127,127,.15)}
+.panel{display:none}
+.season-img{width:100%;height:340px;object-fit:cover;border-radius:18px;background:var(--spruce)}
+
+/* маршрут */
+.timeline{border-left:3px solid var(--hay);margin-left:.6rem;padding-left:1.8rem}
+.tl-item{position:relative;margin-bottom:2rem}
+.tl-item::before{content:"";position:absolute;left:calc(-1.8rem - 9px);top:.45rem;width:15px;height:15px;border-radius:50%;background:var(--spruce);border:3px solid var(--hay)}
+.tl-item h4{font-size:1.25rem;color:var(--head);margin:0}
+
+/* картка-контейнер, рюкзак, калькулятор */
+.check-card{background:var(--card);border-radius:18px;padding:1.8rem;box-shadow:0 8px 24px rgba(18,38,31,.1)}
+.form-check-input:checked{background-color:var(--spruce);border-color:var(--spruce)}
+.pbar{height:10px;border-radius:10px;background:rgba(127,127,127,.25);overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--hay);transition:width .3s}
+.pill{display:inline-block;min-width:42px;text-align:center;padding:.3rem .8rem;border:1.5px solid var(--head);border-radius:50px;font-weight:600;color:var(--head);cursor:pointer;margin:0 .3rem .4rem 0}
+.pills input:checked + label{background:var(--head);color:var(--snow)}
+.opt{display:block;padding:.55rem .9rem;border:1.5px solid rgba(127,127,127,.4);border-radius:12px;cursor:pointer;margin-bottom:.45rem;font-size:.95rem}
+.pills input:checked + label.opt{border-color:var(--head);background:var(--mist);color:var(--ink);box-shadow:inset 0 0 0 1px var(--head)}
+.flabel{font-weight:600;margin:.4rem 0 .4rem;display:block}
+.calc-res{background:linear-gradient(135deg,var(--spruce),var(--dark));color:#fff;border-radius:18px;padding:1.8rem;height:100%}
+.calc-res .total{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:800;line-height:1.1;color:var(--hay)}
+.rowb{display:flex;justify-content:space-between;font-size:.95rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.calc-note{font-size:.8rem;opacity:.7}
+.n-tot::before{content:counter(ct)}.n-pp::before{content:counter(cp)}.n-r::before{content:counter(cr)}
+.n-s::before{content:counter(cs)}.n-f::before{content:counter(cf)}.n-n::before{content:counter(cn)}
+.n-pk::before{content:counter(pk)}
+
+/* поради, відгуки, FAQ */
+.tips{background:var(--spruce);color:#fff}.tips .section-title{color:#fff}
+.tip{border-top:2px solid var(--hay);padding-top:1rem}
+.stars{color:var(--hay);letter-spacing:2px}
+.review{background:var(--card);border-radius:18px;padding:1.8rem;height:100%;box-shadow:0 8px 24px rgba(18,38,31,.1)}
+details.faq{background:var(--card);border:1px solid rgba(127,127,127,.25);border-radius:12px;margin-bottom:.8rem;overflow:hidden}
+details.faq summary{cursor:pointer;font-weight:600;padding:1rem 1.2rem;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--hay)}
+details.faq[open] summary{background:var(--mist);color:var(--head)}
+details.faq[open] summary::after{content:"−"}
+details.faq p{margin:0;padding:1rem 1.2rem}
+
+footer{background:var(--dark);color:#a9b9b0;padding:1.6rem 0;font-size:.95rem}
+.to-top{position:fixed;right:1.2rem;bottom:1.2rem;width:44px;height:44px;border-radius:50%;background:var(--hay);color:var(--dark);display:flex;align-items:center;justify-content:center;z-index:50;font-size:1.2rem;text-decoration:none}
+@supports(animation-timeline:scroll()){.to-top{opacity:0;visibility:hidden;animation:topShow linear both;animation-timeline:scroll();animation-range:500px 700px}
+@keyframes topShow{to{opacity:1;visibility:visible}}}
+
+/* маршрути */
+.routes{background:var(--spruce);color:#fff}.routes .section-title{color:#fff}.routes .lead-small{color:#c5d3cb}
+.rcard{display:block;background:var(--card);color:var(--ink);border-radius:18px;overflow:hidden;text-decoration:none;height:100%;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:transform .3s}
+.rcard:hover{color:var(--ink)}
+.rcard .ph{height:170px}
+.rcard .tag{background:var(--hay)}
+.lvl{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:700;padding:.2rem .75rem;border-radius:50px;color:#fff}
+.lvl.d1{background:#2e9e5b}.lvl.d2{background:#b9820f}.lvl.d3{background:#d9534f}
+.dif{display:inline-flex;gap:4px;vertical-align:middle}
+.dif i{width:10px;height:10px;border-radius:50%;background:rgba(127,127,127,.4)}
+.dif.d1 i:nth-child(-n+1){background:#2e9e5b}.dif.d2 i:nth-child(-n+2){background:#b9820f}.dif.d3 i{background:#d9534f}
+.rstats{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:1rem}
+.rstats div{background:var(--mist);border-radius:10px;padding:.5rem .6rem;font-size:.75rem;line-height:1.3;color:var(--muted)}
+.rstats b{display:block;font-size:.92rem;color:var(--head)}
+.steps{counter-reset:st;list-style:none;padding:0;margin:0 0 1.2rem}
+.steps li{counter-increment:st;position:relative;padding-left:2.5rem;margin-bottom:.8rem}
+.steps li::before{content:counter(st);position:absolute;left:0;top:.1rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--hay);color:var(--dark);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.note{border-left:3px solid var(--hay);background:var(--mist);padding:.7rem 1rem;border-radius:0 10px 10px 0;font-size:.92rem}
+.legend{font-size:.85rem;color:#c5d3cb}
+@media(hover:hover){.place:hover,.attr:hover,.rcard:hover{transform:translateY(-6px)}}
+@media(hover:none){.place:hover img,.g-item:hover img,.attr:hover .ph img,.food:hover .ph img{transform:none}}
+@media(min-width:768px){.slide{background-image:var(--d)}}
+
+/* мобільна оптимізація */
+@media(max-width:767.98px){
+ section{padding:3.2rem 0}
+ .caption h1{font-size:clamp(2.1rem,9.5vw,3rem)}.caption p{font-size:1rem}
+ .slide .bar{bottom:1.4rem}.dots{bottom:2.4rem}.scroll-down{display:none}
+ .ctrl{width:44px;height:44px}
+ .place{height:240px}.rcard .ph{height:150px}
+ .scrollx{flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none;margin-inline:-12px;padding-inline:12px;-webkit-overflow-scrolling:touch}
+ .scrollx::-webkit-scrollbar{display:none}.scrollx>*{flex:0 0 auto}
+ .toolbar .vgroup{width:100%}.vgroup .fbtn{flex:1;text-align:center}
+ .fbtn,.tabl{padding:.6rem 1.1rem}
+ .pill{min-height:42px;display:inline-flex;align-items:center;justify-content:center}
+ .opt{padding:.75rem .9rem}
+ .pmodal,.lb{padding:0}
+ .pmodal .pm-card{max-height:100dvh;height:100dvh;border-radius:0}
+ .pm-photos img{height:210px}.pm-body{padding:1.2rem}.pm-frame iframe{height:240px}
+ .pm-close{width:42px;height:42px}
+ .tilemap{border-radius:14px}.mpin .lbl{display:none}
+ .check-card,.calc-res,.review{padding:1.3rem}
+ .stat b{font-size:1.7rem}
+ .g-item .cap{font-size:.8rem;padding:1rem .6rem .5rem}
+ .season-img{height:220px}
+ .timeline{padding-left:1.4rem}
+ .to-top{right:.8rem;bottom:calc(.8rem + env(safe-area-inset-bottom))}
+ footer{padding-bottom:calc(1.6rem + env(safe-area-inset-bottom))}
+}
+/* фільтри */
+#fAll:checked ~ .toolbar label[for=fAll]{background:var(--head);color:var(--snow)}
+#fPeak:checked ~ .toolbar label[for=fPeak]{background:var(--head);color:var(--snow)}
+#fPeak:checked ~ #cards .c-resort{display:none}
+#fPeak:checked ~ #cards .c-water{display:none}
+#fResort:checked ~ .toolbar label[for=fResort]{background:var(--head);color:var(--snow)}
+#fResort:checked ~ #cards .c-peak{display:none}
+#fResort:checked ~ #cards .c-water{display:none}
+#fWater:checked ~ .toolbar label[for=fWater]{background:var(--head);color:var(--snow)}
+#fWater:checked ~ #cards .c-peak{display:none}
+#fWater:checked ~ #cards .c-resort{display:none}
+#vCards:checked ~ .toolbar label[for=vCards],#vMap:checked ~ .toolbar label[for=vMap]{background:var(--head);color:var(--snow)}
+#vMap:checked ~ #cards{display:none}
+#vCards:checked ~ .mapbox{display:none}
+#sp:checked ~ .tabs-s label[for=sp]{background:var(--head);color:var(--snow)}
+#sp:checked ~ .spanels .p-sp{display:flex}
+#su:checked ~ .tabs-s label[for=su]{background:var(--head);color:var(--snow)}
+#su:checked ~ .spanels .p-su{display:flex}
+#au:checked ~ .tabs-s label[for=au]{background:var(--head);color:var(--snow)}
+#au:checked ~ .spanels .p-au{display:flex}
+#wi:checked ~ .tabs-s label[for=wi]{background:var(--head);color:var(--snow)}
+#wi:checked ~ .spanels .p-wi{display:flex}
+#tR:checked ~ .tabs-p label[for=tR]{background:var(--head);color:var(--snow)}
+#tR:checked ~ .ppanels .t-route{display:block}
+#tB:checked ~ .tabs-p label[for=tB]{background:var(--head);color:var(--snow)}
+#tB:checked ~ .ppanels .t-budget{display:block}
+#tP:checked ~ .tabs-p label[for=tP]{background:var(--head);color:var(--snow)}
+#tP:checked ~ .ppanels .t-pack{display:block}
+#h1:checked ~ .slides .s1{animation:heroIn .6s both;opacity:1;visibility:visible}
+#h1:checked ~ .dots label[for=h1]{opacity:1;background:var(--hay);width:54px}
+#h2:checked ~ .slides .s2{animation:heroIn .6s both;opacity:1;visibility:visible}
+#h2:checked ~ .dots label[for=h2]{opacity:1;background:var(--hay);width:54px}
+#h3:checked ~ .slides .s3{animation:heroIn .6s both;opacity:1;visibility:visible}
+#h3:checked ~ .dots label[for=h3]{opacity:1;background:var(--hay);width:54px}
+#h4:checked ~ .slides .s4{animation:heroIn .6s both;opacity:1;visibility:visible}
+#h4:checked ~ .dots label[for=h4]{opacity:1;background:var(--hay);width:54px}
+
+.calc-wrap{--days:3;--ppl:2;--rooms:1;--road:766;--stay:900;--food:1023;--f1:0;--f2:0;--f3:0;--f4:0;--f5:0;--res:100;
+ --r:calc(var(--road) * var(--ppl));
+ --s:calc(var(--stay) * (var(--days) - 1) * var(--rooms));
+ --fd:calc(var(--food) * var(--days) * var(--ppl));
+ --fn:calc((var(--f1) + var(--f2) + var(--f3) + var(--f4) + var(--f5)) * var(--ppl));
+ --base:calc(var(--r) + var(--s) + var(--fd) + var(--fn));
+ --tot:calc(var(--base) * var(--res) / 100);
+ counter-reset:cr var(--r) cs var(--s) cf var(--fd) cn var(--fn) ct var(--tot) cp calc(var(--tot) / var(--ppl))}
+.calc-wrap:has(#d1:checked){--days:1}
+.calc-wrap:has(#d2:checked){--days:2}
+.calc-wrap:has(#d3:checked){--days:3}
+.calc-wrap:has(#d4:checked){--days:4}
+.calc-wrap:has(#d5:checked){--days:5}
+.calc-wrap:has(#d6:checked){--days:6}
+.calc-wrap:has(#d7:checked){--days:7}
+.calc-wrap:has(#n1:checked){--ppl:1;--rooms:1}
+.calc-wrap:has(#n2:checked){--ppl:2;--rooms:1}
+.calc-wrap:has(#n3:checked){--ppl:3;--rooms:2}
+.calc-wrap:has(#n4:checked){--ppl:4;--rooms:2}
+.calc-wrap:has(#n5:checked){--ppl:5;--rooms:3}
+.calc-wrap:has(#n6:checked){--ppl:6;--rooms:3}
+.calc-wrap:has(#trT:checked):has(#stud:checked){--road:483}
+.calc-wrap:has(#trB:checked){--road:4000}
+.calc-wrap:has(#trC:checked){--road:0}
+.calc-wrap:has(#sB:checked){--stay:2720}.calc-wrap:has(#sC:checked){--stay:7000}
+.calc-wrap:has(#fdB:checked){--food:1624}.calc-wrap:has(#fdC:checked){--food:2826}
+.calc-wrap:has(#res:checked){--res:110}
+.calc-wrap:has(#f1:checked){--f1:400}
+.calc-wrap:has(#f2:checked){--f2:1000}
+.calc-wrap:has(#f3:checked){--f3:800}
+.calc-wrap:has(#f4:checked){--f4:380}
+.calc-wrap:has(#f5:checked){--f5:870}
+.pack-wrap{--k1:0;--k2:0;--k3:0;--k4:0;--k5:0;--k6:0;--k7:0;--k8:0;--k9:0;--k10:0;--sum:calc(var(--k1) + var(--k2) + var(--k3) + var(--k4) + var(--k5) + var(--k6) + var(--k7) + var(--k8) + var(--k9) + var(--k10));counter-reset:pk calc(var(--sum) * 10)}
+.pack-wrap .pbar i{width:calc(var(--sum) * 10%)}
+.pack-wrap:has(#k1:checked){--k1:1}
+.pack-wrap:has(#k2:checked){--k2:1}
+.pack-wrap:has(#k3:checked){--k3:1}
+.pack-wrap:has(#k4:checked){--k4:1}
+.pack-wrap:has(#k5:checked){--k5:1}
+.pack-wrap:has(#k6:checked){--k6:1}
+.pack-wrap:has(#k7:checked){--k7:1}
+.pack-wrap:has(#k8:checked){--k8:1}
+.pack-wrap:has(#k9:checked){--k9:1}
+.pack-wrap:has(#k10:checked){--k10:1}
+
+/* Заготовки фото: поклади файл у photos/ або встав посилання в src */
+img{background:linear-gradient(135deg,#1d3b30,#2f5a48);color:transparent;font-size:0;image-rendering:auto}
+/* HDR-фото показуються як звичайні (SDR) */
+img,.slide{dynamic-range-limit:standard}
+.lb img,.season-img,.pm-photos img{max-width:100%}
+    </style>
+  </head>
+
+  <body>
+    <!-- Перемикач темної теми -->
+    <input type="checkbox" class="vh" id="themeT" aria-label="Темна тема">
+
+    <!-- Навігація -->
+    <nav class="navbar navbar-expand-xxl fixed-top">
+      <div class="container">
+        <a class="brand" href="#top">Карпати</a>
+        <input type="checkbox" class="vh" id="navT" aria-label="Меню">
+        <label class="navbar-toggler border-0" for="navT">
+          <span class="navbar-toggler-icon"></span>
+        </label>
+        <div class="navbar-collapse justify-content-end">
+          <ul class="navbar-nav gap-xxl-3">
+            <li class="nav-item">
+              <a class="nav-link" href="#about">Про гори</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#places">Місця</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#routes">Маршрути</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#attractions">Атракціони</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gallery">Галерея</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#seasons">Сезони</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#plan">Планування</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#reviews">Відгуки</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#faq">Питання</a>
+            </li>
+          </ul>
+          <label class="theme-btn ms-xxl-3 mt-3 mt-xxl-0" for="themeT" title="Змінити тему">
+            <i class="bi bi-circle-half"></i>
+          </label>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Головний екран -->
+    <header class="hero" id="top">
+      <input class="vh" type="radio" name="hs" id="h1" aria-label="Слайд 1">
+      <input class="vh" type="radio" name="hs" id="h2" aria-label="Слайд 2">
+      <input class="vh" type="radio" name="hs" id="h3" aria-label="Слайд 3">
+      <input class="vh" type="radio" name="hs" id="h4" aria-label="Слайд 4">
+      <div class="slides">
+        <div class="slide s1" style="--i:0;--m:url('1.jpg');--d:url('1.jpg')">
+          <div class="caption">
+            <div class="container">
+              <h1>Там, де небо торкається полонин</h1>
+              <p class="mt-4 mb-4">
+                Подорож Українськими Карпатами: вершини, озера, водоспади та тиша, якої не вистачає
+                в місті.
+              </p>
+              <a href="#places" class="btn-hay">Обрати маршрут</a>
+            </div>
+          </div>
+          <div class="bar">
+            <div class="container">
+              <label class="ctrl" for="h4" title="Назад">
+                <i class="bi bi-chevron-left"></i>
+              </label>
+              <label class="ctrl" for="h2" title="Далі">
+                <i class="bi bi-chevron-right"></i>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="slide s2" style="--i:1;--m:url('2.jpg');--d:url('2.jpg')">
+          <div class="caption">
+            <div class="container">
+              <h1>Говерла: 2061 метр над морем</h1>
+              <p class="mt-4 mb-4">Піднімись на найвищу точку України й подивись на Чорногору з висоти.</p>
+              <a href="#p1" class="btn-hay">Про Говерлу</a>
+            </div>
+          </div>
+          <div class="bar">
+            <div class="container">
+              <label class="ctrl" for="h1" title="Назад">
+                <i class="bi bi-chevron-left"></i>
+              </label>
+              <label class="ctrl" for="h3" title="Далі">
+                <i class="bi bi-chevron-right"></i>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="slide s3" style="--i:2;--m:url('3.jpg');--d:url('3.jpg')">
+          <div class="caption">
+            <div class="container">
+              <h1>Озера, які схожі на дзеркала</h1>
+              <p class="mt-4 mb-4">Синевир, Нижній Буковель та інші озера, де вода відбиває ліси й хмари.</p>
+              <a href="#places" class="btn-hay">Дивитися місця</a>
+            </div>
+          </div>
+          <div class="bar">
+            <div class="container">
+              <label class="ctrl" for="h2" title="Назад">
+                <i class="bi bi-chevron-left"></i>
+              </label>
+              <label class="ctrl" for="h4" title="Далі">
+                <i class="bi bi-chevron-right"></i>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          class="slide s4"
+          style="--i:3;--m:url('https://fomich.ua/_next/image/?url=https%3A%2F%2Fapp.fomich.ua%2Fstorage%2F2026%2F2%2F17%2F01KHNQ2D93KD9NRC0NEY5NYSK3.png&w=1920&q=75');--d:url('https://fomich.ua/_next/image/?url=https%3A%2F%2Fapp.fomich.ua%2Fstorage%2F2026%2F2%2F17%2F01KHNQ2D93KD9NRC0NEY5NYSK3.png&w=1920&q=75')">
+          <div class="caption">
+            <div class="container">
+              <h1>Зима в Карпатах</h1>
+              <p class="mt-4 mb-4">Лижі, сноуборд, глінтвейн і сніг, який скрипить під ногами.</p>
+              <a href="#seasons" class="btn-hay">Сезони</a>
+            </div>
+          </div>
+          <div class="bar">
+            <div class="container">
+              <label class="ctrl" for="h3" title="Назад">
+                <i class="bi bi-chevron-left"></i>
+              </label>
+              <label class="ctrl" for="h1" title="Далі">
+                <i class="bi bi-chevron-right"></i>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dots">
+        <div class="container">
+          <label for="h1" style="--i:0" title="Слайд 1"></label>
+          <label for="h2" style="--i:1" title="Слайд 2"></label>
+          <label for="h3" style="--i:2" title="Слайд 3"></label>
+          <label for="h4" style="--i:3" title="Слайд 4"></label>
+        </div>
+      </div>
+      <a href="#about" class="scroll-down" aria-label="Вниз">
+        <i class="bi bi-chevron-double-down"></i>
+      </a>
+    </header>
+
+    <!-- Розділ: Про Карпати -->
+    <section class="bg-mist" id="about">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="section-title mb-3">Гори, до яких хочеться повертатися</h2>
+            <p class="lead-small">
+              Українські Карпати тягнуться через Івано-Франківську, Закарпатську, Львівську та
+              Чернівецьку області. Тут є хребти для справжніх сходжень, затишні села з гуцульською
+              кухнею, сучасні курорти та водоспади, до яких можна дійти за пів години.
+            </p>
+            <p class="lead-small">
+              Карпати - це ще й жива культура: гуцульські вишивки, трембіти, дерев'яні церкви та
+              ремесла, які передають із покоління в покоління.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <div class="row g-4">
+              <div class="col-6">
+                <div class="stat"><b>2061 м</b>найвища точка - Говерла</div>
+              </div>
+              <div class="col-6">
+                <div class="stat"><b>280 км</b>довжина українських Карпат</div>
+              </div>
+              <div class="col-6">
+                <div class="stat"><b>4 сезони</b>гори гарні цілий рік</div>
+              </div>
+              <div class="col-6">
+                <div class="stat"><b>150 тис. км²</b>площа всього Карпатського хребта</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Місця -->
+    <section id="places">
+      <div class="container">
+        <h2 class="section-title mb-2">Куди поїхати</h2>
+        <p class="lead-small mb-4">
+          Обери категорію й натисни на місце, щоб побачити фото, історію, погоду та карту.
+        </p>
+        <input class="vh" type="radio" name="flt" id="fAll" checked>
+        <input class="vh" type="radio" name="flt" id="fPeak">
+        <input class="vh" type="radio" name="flt" id="fResort">
+        <input class="vh" type="radio" name="flt" id="fWater">
+        <input class="vh" type="radio" name="view" id="vCards" checked>
+        <input class="vh" type="radio" name="view" id="vMap">
+        <div class="toolbar d-flex flex-wrap justify-content-between align-items-center gap-3 mb-5">
+          <div class="d-flex flex-wrap gap-2 scrollx">
+            <label class="fbtn" for="fAll">Усі</label>
+            <label class="fbtn" for="fPeak">Вершини</label>
+            <label class="fbtn" for="fResort">Курорти</label>
+            <label class="fbtn" for="fWater">Озера та водоспади</label>
+          </div>
+          <div class="vgroup">
+            <label class="fbtn" for="vCards"><i class="bi bi-grid me-1"></i>Картки</label>
+            <label class="fbtn" for="vMap"><i class="bi bi-map me-1"></i>Карта</label>
+          </div>
+        </div>
+        <div class="row g-4" id="cards">
+          <div class="col-12 col-md-6 col-xl-4 c-peak">
+            <a class="place" href="#p1">
+              <img src="4.jpg" alt="" loading="lazy" decoding="async">
+              <span class="tag">Вершини</span>
+              <div class="info">
+                <h3>Говерла</h3>
+                <span class="s">Найвища гора України</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 c-resort">
+            <a class="place" href="#p2">
+              <img src="bukovel1.jpg" alt="" loading="lazy" decoding="async">
+              <span class="tag">Курорти</span>
+              <div class="info">
+                <h3>Буковель</h3>
+                <span class="s">Головний гірськолижний курорт</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 c-water">
+            <a class="place" href="#p3">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/d/d0/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D1%80%D0%B8_%D0%A1%D0%B8%D0%BD%D0%B5%D0%B2%D0%B8%D1%80%D1%83.jpg?utm_source=uk.wikipedia.org&utm_campaign=index&utm_content=original"
+                alt=""
+                loading="lazy"
+                decoding="async">
+              <span class="tag">Вода</span>
+              <div class="info">
+                <h3>Озеро Синевир</h3>
+                <span class="s">Морське око Карпат</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 c-water">
+            <a class="place" href="#p4">
+              <img src="probiy.jpg" alt="" loading="lazy" decoding="async">
+              <span class="tag">Вода</span>
+              <div class="info">
+                <h3>Водоспад Пробій</h3>
+                <span class="s">Ярємче, Івано-Франківщина</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 c-resort">
+            <a class="place" href="#p5">
+              <img
+                src="https://winter.com.ua/wp-content/uploads/2025/04/dragobrat-21.jpg"
+                alt=""
+                loading="lazy"
+                decoding="async">
+              <span class="tag">Курорти</span>
+              <div class="info">
+                <h3>Драгобрат</h3>
+                <span class="s">Найвищий гірськолижний курорт</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 c-peak">
+            <a class="place" href="#p6">
+              <img
+                src="https://karpaty.love/uploads/posts/2017-12/1513633592_mist-viaduk-u-vorohti-3.jpg"
+                alt=""
+                loading="lazy"
+                decoding="async">
+              <span class="tag">Вершини</span>
+              <div class="info">
+                <h3>Ворохта</h3>
+                <span class="s">Брама до Чорногори</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="mapbox">
+          <div class="tilemap" style="aspect-ratio:4/3">
+            <div class="tiles" style="grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr)">
+              <img
+                src="https://tile.openstreetmap.org/10/579/353.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/580/353.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/581/353.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/582/353.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/579/354.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/580/354.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/581/354.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/582/354.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/579/355.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/580/355.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/581/355.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+              <img
+                src="https://tile.openstreetmap.org/10/582/355.png"
+                alt=""
+                loading="lazy"
+                width="256"
+                height="256">
+            </div>
+            <a class="mpin" href="#p1" style="left:67.24%;top:75.85%" title="Говерла">
+              <b>1</b>
+              <span class="lbl">Говерла</span>
+            </a>
+            <a class="mpin" href="#p2" style="left:60.59%;top:47.28%" title="Буковель">
+              <b>2</b>
+              <span class="lbl">Буковель</span>
+            </a>
+            <a class="mpin" href="#p3" style="left:8.97%;top:10.50%" title="Озеро Синевир">
+              <b>3</b>
+              <span class="lbl">Озеро Синевир</span>
+            </a>
+            <a class="mpin" href="#p4" style="left:70.78%;top:34.53%" title="Водоспад Пробій">
+              <b>4</b>
+              <span class="lbl">Водоспад Пробій</span>
+            </a>
+            <a class="mpin" href="#p5" style="left:49.58%;top:63.33%" title="Драгобрат">
+              <b>5</b>
+              <span class="lbl">Драгобрат</span>
+            </a>
+            <a class="mpin" href="#p6" style="left:70.78%;top:58.32%" title="Ворохта">
+              <b>6</b>
+              <span class="lbl">Ворохта</span>
+            </a>
+          </div>
+          <div class="attrib">
+            ©
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>
+            contributors. Натисни на мітку, щоб відкрити місце.
+          </div>
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            <a class="chip" href="#p1"><b>1</b>Говерла</a>
+            <a class="chip" href="#p2"><b>2</b>Буковель</a>
+            <a class="chip" href="#p3"><b>3</b>Озеро Синевир</a>
+            <a class="chip" href="#p4"><b>4</b>Водоспад Пробій</a>
+            <a class="chip" href="#p5"><b>5</b>Драгобрат</a>
+            <a class="chip" href="#p6"><b>6</b>Ворохта</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Піші маршрути -->
+    <section class="routes" id="routes">
+      <div class="container">
+        <h2 class="section-title mb-2">Піші маршрути</h2>
+        <p class="lead-small mb-5">
+          Три маршрути різної складності від легкого до складного. Натисни на маршрут, щоб побачити
+          етапи, дані та карту.
+        </p>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <a class="rcard" href="#r1">
+              <div class="ph">
+                <img src="4.jpg" alt="" loading="lazy" decoding="async">
+              </div>
+              <div class="card-b">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="lvl d2">Середня</span>
+                  <span class="dif d2">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </span>
+                </div>
+                <h4 class="fs-5 mb-1">Говерла із Заросляка</h4>
+                <p class="mb-0 small" style="color:var(--muted)">Зелена стежка до найвищої точки України</p>
+                <div class="rstats">
+                  <div><b>4,3 км</b>в один бік</div>
+                  <div><b>+761 м</b>набір висоти</div>
+                  <div><b>3–3,5 год</b>підйом</div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="rcard" href="#r2">
+              <div class="ph">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/4/4c/%D0%9C%D1%96%D1%81%D1%82%D0%B8%D1%87%D0%BD%D1%96_%D0%BF%D1%96%D0%BA%D0%B8.jpg?utm_source=uk.wikipedia.org&utm_campaign=index&utm_content=original"
+                  alt=""
+                  loading="lazy"
+                  decoding="async">
+              </div>
+              <div class="card-b">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="lvl d3">Складна</span>
+                  <span class="dif d3">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </span>
+                </div>
+                <h4 class="fs-5 mb-1">Шпиці через полонину Маришевську</h4>
+                <p class="mb-0 small" style="color:var(--muted)">Скелі, схожі на кам'яні шпилі</p>
+                <div class="rstats">
+                  <div><b>до 8 км</b>в один бік</div>
+                  <div><b>≈15 км</b>туди й назад</div>
+                  <div><b>7–8 год</b>весь похід</div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="rcard" href="#r3">
+              <div class="ph">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/5/5d/%D0%A5%D0%BE%D0%BC%D1%8F%D0%BA.jpg?utm_source=uk.wikipedia.org&utm_campaign=index&utm_content=original"
+                  alt=""
+                  loading="lazy"
+                  decoding="async">
+              </div>
+              <div class="card-b">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="lvl d1">Легка</span>
+                  <span class="dif d1">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </span>
+                </div>
+                <h4 class="fs-5 mb-1">Хом'як із Татарова</h4>
+                <p class="mb-0 small" style="color:var(--muted)">Вершина вихідного дня в Горганах</p>
+                <div class="rstats">
+                  <div><b>≈840 м</b>набір висоти</div>
+                  <div><b>2,5 год</b>в один бік</div>
+                  <div><b>1542 м</b>вершина</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <p class="legend mt-4 mb-0"></p>
+      </div>
+    </section>
+
+    <!-- Розділ: Атракціони -->
+    <section class="bg-mist" id="attractions">
+      <div class="container">
+        <h2 class="section-title mb-2">Найпопулярніші атракціони</h2>
+        <p class="lead-small mb-5">
+          Три найпопулярніші розваги Буковеля. Ціни станом на листопад 2026, графік роботи та
+          актуальні тарифи перевіряй на офіційному сайті курорту.
+        </p>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="attr">
+              <div class="ph">
+                <i class="bi bi-record-circle"></i>
+                <img src="coleso.jpg" alt="" loading="lazy" decoding="async">
+                <span class="tag">від 400 грн</span>
+              </div>
+              <div class="card-b">
+                <h4 class="fs-5">Колесо огляду</h4>
+                <p class="mb-0">
+                  Оглядове колесо в центрі курорту. За даними туристичних сайтів, його висота 45 м,
+                  і воно вважається найвищим в Україні. Квиток: 400 грн (звичайний) і 280 грн
+                  (пільговий).
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="attr">
+              <div class="ph">
+                <i class="bi bi-water"></i>
+                <img src="https://transferdokarpat.com.ua/wp-content/uploads/2025/02/aquapark.bukovel.jpg" alt="" loading="lazy" decoding="async">
+                <span class="tag">Працює цілий рік</span>
+              </div>
+              <div class="card-b">
+                <h4 class="fs-5">Аквапарк Mavka</h4>
+                <p class="mb-0">
+                  Крита водна розвага за мотивами мультфільму «Мавка. Лісова пісня»: гірки, басейни
+                  та спа-зона. Медіа повідомляють, що вечірній квиток коштує вдвічі дешевше за
+                  денний. Точну ціну дивись на сайті курорту.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="attr">
+              <div class="ph">
+                <i class="bi bi-speedometer2"></i>
+                <img src="https://vidviday.ua/storage/media/place/21848/rodelban-2.jpg" alt="" loading="lazy" decoding="async">
+                <span class="tag">від 1000 грн</span>
+              </div>
+              <div class="card-b">
+                <h4 class="fs-5">Родельбан Speed Fun</h4>
+                <p class="mb-0">
+                  Всепогодна санна траса за німецькою технологією, працює і влітку, і взимку.
+                  Розташована біля верхньої станції витягу №2. Спуск: 1000 грн для однієї людини,
+                  1500 грн для двох.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Галерея1 -->
+    <section id="gallery">
+      <div class="container">
+        <h2 class="section-title mb-2">Галерея</h2>
+        <p class="lead-small mb-5">Кадри з Карпат. Натисни на фото, щоб відкрити його на весь екран.</p>
+        <div class="row g-3">
+          <div class="col-6 col-md-4">
+            <a class="g-item" href="#g1">
+              <img src="house.jpg" alt="Будинок" loading="lazy" decoding="async">
+              <span class="cap">Будинок</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4">
+            <a class="g-item" href="#g2">
+              <img src="bukovelnight.jpg" alt="Буковель" loading="lazy" decoding="async">
+              <span class="cap">Буковель</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4">
+            <a class="g-item" href="#g3">
+              <img src="wood.jpg" alt="Ліс" loading="lazy" decoding="async">
+              <span class="cap">Ліс</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4">
+            <a class="g-item" href="#g4">
+              <img src="zakat.jpg" alt="Захід сонця" loading="lazy" decoding="async">
+              <span class="cap">Захід сонця</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4">
+            <a class="g-item" href="#g5">
+              <img src="clouds.jpg" alt="Хмари над Говерлою" loading="lazy" decoding="async">
+              <span class="cap">Хмари над Говерлоюи</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4">
+            <a class="g-item" href="#g6">
+              <img src="ya.jpg" alt="Не робіть так!" loading="lazy" decoding="async">
+              <span class="cap">Не робіть так!</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Сезони -->
+    <section class="bg-mist" id="seasons">
+      <div class="container">
+        <h2 class="section-title mb-2">Карпати в кожну пору року</h2>
+        <p class="lead-small mb-4">Гори змінюються від сезону до сезону. Обери той, що тобі до смаку.</p>
+        <input class="vh" type="radio" name="season" id="sp" checked>
+        <input class="vh" type="radio" name="season" id="su">
+        <input class="vh" type="radio" name="season" id="au">
+        <input class="vh" type="radio" name="season" id="wi">
+        <div class="tabs-s d-flex flex-wrap gap-2 mb-4 scrollx">
+          <label class="tabl" for="sp"><i class="bi bi-flower1 me-1"></i>Весна</label>
+          <label class="tabl" for="su"><i class="bi bi-brightness-high me-1"></i>Літо</label>
+          <label class="tabl" for="au"><i class="bi bi-tree me-1"></i>Осінь</label>
+          <label class="tabl" for="wi"><i class="bi bi-snow2 me-1"></i>Зима</label>
+        </div>
+        <div class="spanels">
+          <div class="panel p-sp row g-4 align-items-center">
+            <div class="col-lg-6">
+              <img class="season-img" src="https://etnotur.ua/wp-content/uploads/2019/11/8-bereznya-1-660x495.jpg" alt="Весна" loading="lazy" decoding="async">
+            </div>
+            <div class="col-lg-6">
+              <h3 class="fs-2" style="color:var(--head)">Полонини оживають</h3>
+              <p>
+                Тане сніг, цвітуть крокуси та рододендрони. Це час для коротких прогулянок і
+                водоспадів, які в цей період найповноводніші. У високих горах ще може лежати сніг.
+              </p>
+            </div>
+          </div>
+          <div class="panel p-su row g-4 align-items-center">
+            <div class="col-lg-6">
+              <img class="season-img" src="karpatylito.jpg" alt="Літо" loading="lazy" decoding="async">
+            </div>
+            <div class="col-lg-6">
+              <h3 class="fs-2" style="color:var(--head)">Сезон сходжень</h3>
+              <p>
+                Найкращий час для Говерли та походів з наметами. Дні довгі, полонини зелені, у селах
+                дозрівають лісові ягоди. Не забувай про грози після обіду.
+              </p>
+            </div>
+          </div>
+          <div class="panel p-au row g-4 align-items-center">
+            <div class="col-lg-6">
+              <img class="season-img" src="https://karpatium.com.ua/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUFGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--25687eb9ff68e77e51ac5c7184682cceec69698d/%D0%BA%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D0%B8-%D0%BE%D1%81%D1%96%D0%BD%D0%BD%D1%8E.jpeg" alt="Осінь" loading="lazy" decoding="async">
+            </div>
+            <div class="col-lg-6">
+              <h3 class="fs-2" style="color:var(--head)">Золоті ліси</h3>
+              <p>
+                Букові ліси стають жовтими й червоними, повітря прозоре, туристів менше. Вересень і
+                жовтень ідеальні для фото та спокійних маршрутів.
+              </p>
+            </div>
+          </div>
+          <div class="panel p-wi row g-4 align-items-center">
+            <div class="col-lg-6">
+              <img class="season-img" src="https://s-vodogray.com.ua/wp-content/uploads/2021/04/1482587607167830750.jpg" alt="Зима" loading="lazy" decoding="async">
+            </div>
+            <div class="col-lg-6">
+              <h3 class="fs-2" style="color:var(--head)">Лижі та сніг</h3>
+              <p>
+                Відкриті курорти Буковеля, Драгобрату та Славського. Сніг лежить із грудня до
+                березня, а вечорами всюди чекає гарячий чай і глінтвейн.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Планування поїздки -->
+    <section id="plan">
+      <div class="container">
+        <h2 class="section-title mb-2">Планування поїздки</h2>
+        <p class="lead-small mb-4">Маршрут, орієнтовний бюджет і список речей в одному місці.</p>
+        <input class="vh" type="radio" name="plan" id="tR" checked>
+        <input class="vh" type="radio" name="plan" id="tB">
+        <input class="vh" type="radio" name="plan" id="tP">
+        <div class="tabs-p d-flex flex-wrap gap-2 mb-4 scrollx">
+          <label class="tabl" for="tR"><i class="bi bi-signpost-split me-1"></i>Маршрут</label>
+          <label class="tabl" for="tB"><i class="bi bi-wallet2 me-1"></i>Бюджет</label>
+          <label class="tabl" for="tP"><i class="bi bi-backpack me-1"></i>Рюкзак</label>
+        </div>
+        <div class="ppanels">
+          <div class="panel t-route">
+            <div class="row g-5">
+              <div class="col-lg-5">
+                <h3 class="fs-2 mb-3" style="color:var(--head)">Маршрут на 3 дні</h3>
+                <p class="lead-small">
+                  Готовий план для першої поїздки: від спокійного знайомства з горами до підйому на
+                  найвищу точку.
+                </p>
+              </div>
+              <div class="col-lg-7">
+                <div class="timeline">
+                  <div class="tl-item">
+                    <h4>День 1. Ярємче та Ворохта</h4>
+                    <p class="mb-0">
+                      Водоспад Пробій, сувенірний ринок, вечірня прогулянка по Ворохті й вечеря з
+                      гуцульськими стравами.
+                    </p>
+                  </div>
+                  <div class="tl-item">
+                    <h4>День 2. Говерла</h4>
+                    <p class="mb-0">
+                      Ранній вихід із Заросляка, вершина вдень, повернення до заходу сонця. Підйом
+                      займає 3–4 години.
+                    </p>
+                  </div>
+                  <div class="tl-item">
+                    <h4>День 3. Буковель</h4>
+                    <p class="mb-0">
+                      Колесо огляду, аквапарк Mavka чи родельбан, відпочинок і дорога додому.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel t-budget">
+            <div class="calc-wrap row g-4">
+              <div class="col-lg-6">
+                <div class="check-card pills">
+                  <span class="flabel">Днів</span>
+                  <input class="vh" type="radio" name="days" id="d1"><label class="pill" for="d1">1</label><!--
+                  --><input class="vh" type="radio" name="days" id="d2"><label class="pill" for="d2">2</label><!--
+                  --><input class="vh" type="radio" name="days" id="d3" checked><label class="pill" for="d3">3</label><!--
+                  --><input class="vh" type="radio" name="days" id="d4"><label class="pill" for="d4">4</label><!--
+                  --><input class="vh" type="radio" name="days" id="d5"><label class="pill" for="d5">5</label><!--
+                  --><input class="vh" type="radio" name="days" id="d6"><label class="pill" for="d6">6</label><!--
+                  --><input class="vh" type="radio" name="days" id="d7"><label class="pill" for="d7">7</label>
+                  <span class="flabel">Людей</span>
+                  <input class="vh" type="radio" name="ppl" id="n1"><label class="pill" for="n1">1</label><!--
+                  --><input class="vh" type="radio" name="ppl" id="n2" checked><label class="pill" for="n2">2</label><!--
+                  --><input class="vh" type="radio" name="ppl" id="n3"><label class="pill" for="n3">3</label><!--
+                  --><input class="vh" type="radio" name="ppl" id="n4"><label class="pill" for="n4">4</label><!--
+                  --><input class="vh" type="radio" name="ppl" id="n5"><label class="pill" for="n5">5</label><!--
+                  --><input class="vh" type="radio" name="ppl" id="n6"><label class="pill" for="n6">6</label>
+                  <span class="flabel mt-2">Дорога (туди й назад)</span>
+                  <input class="vh" type="radio" name="tr" id="trT" checked><label class="opt" for="trT">Потяг до ст. Татарів-Буковель + трансфер (від 283 і від 100 грн в один бік)</label><!--
+                  --><input class="vh" type="radio" name="tr" id="trB"><label class="opt" for="trB">Автобус до Буковеля (від 2 000 грн за квиток)</label><!--
+                  --><input class="vh" type="radio" name="tr" id="trC"><label class="opt" for="trC">Своє авто (пальне не враховано)</label>
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="stud"><label class="form-check-label" for="stud">Студентський квиток на потяг (−50% на плацкарт)</label>
+                  </div>
+                  <span class="flabel">Проживання (номер на 2 особи)</span>
+                  <input class="vh" type="radio" name="stay" id="sA" checked><label class="opt" for="sA">Бюджетний номер: 900 грн/ніч</label><!--
+                  --><input class="vh" type="radio" name="stay" id="sB"><label class="opt" for="sB">Готель зі SPA та басейном: 2 720 грн/ніч</label><!--
+                  --><input class="vh" type="radio" name="stay" id="sC"><label class="opt" for="sC">Дорогий готель: до 7 000 грн/ніч</label>
+                  <span class="flabel">Харчування (на людину)</span>
+                  <input class="vh" type="radio" name="food" id="fdA" checked><label class="opt" for="fdA">Економ: фастфуд, 3 прийоми, 1 023 грн/день</label><!--
+                  --><input class="vh" type="radio" name="food" id="fdB"><label class="opt" for="fdB">Змішане: обід у ресторані + 2 фастфуд, 1 624 грн/день</label><!--
+                  --><input class="vh" type="radio" name="food" id="fdC"><label class="opt" for="fdC">Ресторани: 3 повноцінні обіди, 2 826 грн/день</label>
+                  <span class="flabel">Розваги (на людину)</span>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="f1"><label class="form-check-label" for="f1">Колесо огляду: 400 грн</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="f2"><label class="form-check-label" for="f2">Родельбан: 1 000 грн</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="f3"><label class="form-check-label" for="f3">Тролей: 800 грн</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="f4"><label class="form-check-label" for="f4">Контактний зоопарк «Гуцул Ленд»: 380 грн</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="f5"><label class="form-check-label" for="f5">Скі-пас на 1 день: 870 грн (низький сезон)</label>
+                  </div>
+                  <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" id="res"><label class="form-check-label" for="res">Додати запас 10% на непередбачені витрати</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="calc-res">
+                  <small class="opacity-75">Орієнтовний бюджет</small>
+                  <div class="total"><span class="n-tot"></span> грн</div>
+                  <div class="mb-4 opacity-75">≈ <span class="n-pp"></span> грн на людину</div>
+                  <div class="rowb">
+                    <span>Дорога</span>
+                    <b><span class="n-r"></span> грн</b>
+                  </div>
+                  <div class="rowb">
+                    <span>Проживання</span>
+                    <b><span class="n-s"></span> грн</b>
+                  </div>
+                  <div class="rowb">
+                    <span>Харчування</span>
+                    <b><span class="n-f"></span> грн</b>
+                  </div>
+                  <div class="rowb">
+                    <span>Розваги</span>
+                    <b><span class="n-n"></span> грн</b>
+                  </div>
+                  <div class="calc-note mt-3">
+                    Ціни: Новини.LIVE (жовтень 2026) та Pravda.if.ua за даними курорту «Буковель»
+                    (листопад 2026). Це орієнтовна оцінка, а реальна вартість залежить від дати й
+                    сезону. Підсумок рахує сам CSS, тому потрібен сучасний браузер.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel t-pack">
+            <div class="check-card pack-wrap" style="max-width:760px">
+              <div class="d-flex justify-content-between mb-2">
+                <b>Готовність</b>
+                <b><span class="n-pk"></span>%</b>
+              </div>
+              <div class="pbar mb-4">
+                <i></i>
+              </div>
+              <div class="row g-2">
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k1"><label class="form-check-label" for="k1">Трекінгове взуття</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k2"><label class="form-check-label" for="k2">Дощовик</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k3"><label class="form-check-label" for="k3">Тепла кофта</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k4"><label class="form-check-label" for="k4">Вода (1,5 л)</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k5"><label class="form-check-label" for="k5">Перекус</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k6"><label class="form-check-label" for="k6">Павербанк</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k7"><label class="form-check-label" for="k7">Аптечка</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k8"><label class="form-check-label" for="k8">Сонцезахисні окуляри</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k9"><label class="form-check-label" for="k9">Офлайн-карта</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="k10"><label class="form-check-label" for="k10">Термос із чаєм</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Їжа -->
+    <section class="bg-mist" id="food">
+      <div class="container">
+        <h2 class="section-title mb-2">Смак Карпат</h2>
+        <p class="lead-small mb-5">Після підйому найкраща нагорода - справжня гуцульська кухня.</p>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="food">
+              <div class="ph" style="height:170px">
+                <img src="https://images.unian.net/photos/2020_05/thumb_files/1200_0_1589293253-9270.jpg" alt="" loading="lazy" decoding="async">
+              </div>
+              <div class="card-b">
+                <h4 class="fs-5">Бануш</h4>
+                <p class="mb-0">Кукурудзяна каша на сметані зі шкварками та бринзою.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="food">
+              <div class="ph" style="height:170px">
+                <img src="https://bukinfo.com.ua/news-gallery/645f70d56090e.jpg" alt="" loading="lazy" decoding="async">
+              </div>
+              <div class="card-b">
+                <h4 class="fs-5">Кулеша</h4>
+                <p class="mb-0">Густа каша з кукурудзяної крупи, подається з бринзою.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="food">
+              <div class="ph" style="height:170px">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIEv-r3lmpMB1BtXJusZP4pe0-OpmKs2maE2NMCkzZE--ha10raeRQPW-N&s=10" alt="" loading="lazy" decoding="async">
+              </div>
+              <div class="card-b">
+                <h4 class="fs-5">Гуцульська бринза</h4>
+                <p class="mb-0">Овечий сир, який роблять на полонинах за старими рецептами.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="food">
+              <div class="ph" style="height:170px">
+                <img src="https://img.magnific.com/premium-photo/camping-kettle-mug-rocky-outcrop-with-mountain-backdrop_1179146-37817.jpg?semt=ais_hybrid&w=740&q=80" alt="" loading="lazy" decoding="async">
+              </div>
+              <div class="card-b">
+                <h4 class="fs-5">Карпатський чай</h4>
+                <p class="mb-0">Трав'яний збір із чебрецю, м'яти та суниці. Гріє після спуску.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Поради -->
+    <section class="tips" id="tips">
+      <div class="container">
+        <h2 class="section-title mb-5">Перед виходом у гори</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="tip">
+              <h4>Одяг шарами</h4>
+              <p>Погода змінюється за годину. Візьми дощовик і теплу кофту навіть улітку.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="tip">
+              <h4>Виходь рано</h4>
+              <p>Вранці менше хмар і гроз. Спускатися краще до заходу сонця.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="tip">
+              <h4>Зберігай природу</h4>
+              <p>Забирай сміття з собою і не залишай стежки, щоб не руйнувати схили.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="tip">
+              <h4>Слідкуй за прогнозом</h4>
+              <p>Перевір погоду перед виходом. Якщо збираються грозові хмари, краще повернутися.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="tip">
+              <h4>Телефон і павербанк</h4>
+              <p>Завантаж офлайн-карту, бо зв'язок у горах пропадає. Номер рятувальників: 112.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="tip">
+              <h4>Не йди сам</h4>
+              <p>Повідом рідним маршрут. У групі безпечніше і веселіше.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Відгуки -->
+    <section class="bg-mist" id="reviews">
+      <div class="container">
+        <h2 class="section-title mb-2">Відгуки мандрівників</h2>
+        <p class="lead-small mb-5">Що кажуть ті, хто вже побував у Карпатах.</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="review">
+              <div class="stars mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>
+                Піднімався на Говерлу два рази за літо. Обов'язково візьміть дощовик, бо погода часто змінюється.
+              </p>
+              <div class="mt-3">
+                <b>Владислав К.</b><br><small class="text-muted">Вінниця</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="review">
+              <div class="stars mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>
+                Піднімався на Говерлу на початку осені. Щойно дісталися середини гори, подув такий вітер, що мене ледь на*** не здуло звідти, але так-сяк видерлися.
+              </p>
+              <div class="mt-3">
+                <b>Олександр Ш.</b><br><small class="text-muted">Вінниця</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="review">
+              <div class="stars mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>
+                Були взимку, все дуже сподобалося! Траси були чудово підготовлені, біля підйомника майже не було черг, а поруч продавали дуже смачний глінтвейн.
+              </p>
+              <div class="mt-3">
+                <b>Сергій К.</b><br><small class="text-muted">Вінниця</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Розділ: Часті питання -->
+    <section id="faq">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <h2 class="section-title">Часті питання</h2>
+          </div>
+          <div class="col-lg-8">
+            <details class="faq" open>
+              <summary>Коли найкраще їхати на Говерлу?</summary>
+              <p>З червня по вересень, коли немає снігу і стабільна погода. Найкращий місяць - серпень.</p>
+            </details>
+            <details class="faq">
+              <summary>Чи потрібен гід?</summary>
+              <p>
+                На популярні маршрути (Говерла з Заросляка) гід не обов'язковий, стежка позначена.
+                Для складніших маршрутів і взимку гід потрібен.
+              </p>
+            </details>
+            <details class="faq">
+              <summary>Скільки коштує поїздка?</summary>
+              <p>
+                Залежить від сезону. Найдорожче - у Буковелі взимку, у селах поблизу ціни значно
+                нижчі. Орієнтовний розрахунок дивись у вкладці «Бюджет» розділу «Планування».
+              </p>
+            </details>
+            <details class="faq">
+              <summary>Як дістатися?</summary>
+              <p>
+                Потягом до Івано-Франківська чи Ворохти (є прямі поїзди з Києва та Львова), далі
+                автобусом чи маршруткою до Яремче й Буковеля.
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Підвал -->
+    <footer>
+      <div class="container text-center">© 2026 Карпати. Група: 3-ОК-2 Автори: @vla_d255; @saiwixx.</div>
+    </footer>
+
+    <!-- Кнопка «Нагору» -->
+    <a class="to-top" href="#top" aria-label="Нагору">
+      <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <!-- Вікно місця: Говерла -->
+    <div class="pmodal" id="p1">
+      <a class="pm-bg" href="#places" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#places" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="hoverla1.jpg" alt="Говерла" loading="lazy" decoding="async">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/%D0%93%D0%BE%D0%B2%D0%B5%D1%80%D0%BB%D0%B0_2015.JPG?utm_source=uk.wikipedia.org&utm_campaign=index&utm_content=original" alt="Говерла" loading="lazy" decoding="async">
+          <img src="hoverla2.jpg" alt="Говерла" loading="lazy" decoding="async">
+        </div>
+        <div class="pm-body">
+          <h3 class="section-title fs-2">Говерла</h3>
+          <p>
+            Говерла - висота 2061 м, найвища вершина України. Вона розташована в Чорногірському
+            масиві. Найпопулярніша стежка починається біля села Заросляк і займає приблизно 3–4
+            години вгору. З вершини відкривається панорама на хребти Чорногори.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="fact">
+                <small>Висота</small><b>2061 м</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Регіон</small><b>Чорногора</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Сезон</small><b>червень – вересень</b>
+              </div>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">Погода зараз</b><!--
+              --><iframe src="https://embed.windy.com/embed2.html?lat=48.1601&lon=24.5002&detailLat=48.1601&detailLon=24.5002&width=650&height=450&zoom=8&level=surface&overlay=temp&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" loading="lazy" title="Погода: Говерла"></iframe>
+            </div>
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">На карті</b><!--
+              --><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=24.3802%2C48.0901%2C24.6202%2C48.2301&layer=mapnik&marker=48.1601%2C24.5002" loading="lazy" title="Карта: Говерла"></iframe>
+            </div>
+          </div>
+          <div class="mt-2 text-end">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=48.1601,24.5002"
+              target="_blank"
+              rel="noopener"><i class="bi bi-geo-alt me-1"></i>Відкрити в Google Картах</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вікно місця: Буковель -->
+    <div class="pmodal" id="p2">
+      <a class="pm-bg" href="#places" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#places" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="https://blog.bukovel.com/media/articles/084b177899a144fab29bb106e3d2ff6d.jpg" alt="Буковель" loading="lazy" decoding="async">
+          <img src="https://hochy.in.ua/wp-content/uploads/2022/09/bukovel-vzymku.jpg" alt="Буковель" loading="lazy" decoding="async">
+        </div>
+        <div class="pm-body">
+          <h3 class="section-title fs-2">Буковель</h3>
+          <p>
+            Буковель - найбільший гірськолижний курорт України біля села Поляниця. Взимку тут
+            десятки трас різної складності, влітку - велопрогулянки, піші маршрути та відпочинок із
+            видом на гори. Поряд готелі, кафе з гуцульською кухнею та озера.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="fact">
+                <small>Висота</small><b>900–1370 м</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Регіон</small><b>Івано-Франківщина</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Сезон</small><b>грудень – березень</b>
+              </div>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">Погода зараз</b><!--
+              --><iframe src="https://embed.windy.com/embed2.html?lat=48.3607&lon=24.4067&detailLat=48.3607&detailLon=24.4067&width=650&height=450&zoom=8&level=surface&overlay=temp&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" loading="lazy" title="Погода: Буковель"></iframe>
+            </div>
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">На карті</b><!--
+              --><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=24.2867%2C48.2907%2C24.5267%2C48.4307&layer=mapnik&marker=48.3607%2C24.4067" loading="lazy" title="Карта: Буковель"></iframe>
+            </div>
+          </div>
+          <div class="mt-2 text-end">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=48.3607,24.4067"
+              target="_blank"
+              rel="noopener"><i class="bi bi-geo-alt me-1"></i>Відкрити в Google Картах</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вікно місця: Озеро Синевир -->
+    <div class="pmodal" id="p3">
+      <a class="pm-bg" href="#places" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#places" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="https://funtime.ua/u/img/bg/2022/02/synevyr-3-6208e69b6ae7c.jpg" alt="Озеро Синевир" loading="lazy" decoding="async">
+          <img src="https://lviv-weekend.com.ua/wp-content/uploads/2020/02/Synevyr_ozero.jpg" alt="Озеро Синевир" loading="lazy" decoding="async">
+        </div>
+        <div class="pm-body">
+          <h3 class="section-title fs-2">Озеро Синевир</h3>
+          <p>
+            Синевир - найбільше озеро Українських Карпат на висоті близько 989 м у національному
+            парку «Синевир». За легендою, озеро виникло зі сліз закоханої графської доньки Синь.
+            Посеред води стоїть острівець із сосною, а навколо - стежка для прогулянок.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="fact">
+                <small>Висота</small><b>989 м</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Регіон</small><b>Закарпаття</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Сезон</small><b>весь рік</b>
+              </div>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">Погода зараз</b><!--
+              --><iframe src="https://embed.windy.com/embed2.html?lat=48.6178&lon=23.6808&detailLat=48.6178&detailLon=23.6808&width=650&height=450&zoom=8&level=surface&overlay=temp&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" loading="lazy" title="Погода: Озеро Синевир"></iframe>
+            </div>
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">На карті</b><!--
+              --><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=23.5608%2C48.5478%2C23.8008%2C48.6878&layer=mapnik&marker=48.6178%2C23.6808" loading="lazy" title="Карта: Озеро Синевир"></iframe>
+            </div>
+          </div>
+          <div class="mt-2 text-end">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=48.6178,23.6808"
+              target="_blank"
+              rel="noopener"><i class="bi bi-geo-alt me-1"></i>Відкрити в Google Картах</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вікно місця: Водоспад Пробій -->
+    <div class="pmodal" id="p4">
+      <a class="pm-bg" href="#places" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#places" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="https://romantikspahotels.ua/wp-content/uploads/2015/08/0018-min-1024x683.jpg" alt="Водоспад Пробій" loading="lazy" decoding="async">
+          <img src="probiy1.jpg" alt="Водоспад Пробій" loading="lazy" decoding="async">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTbj52iadXfJLBpfmbkO3GBWW3xARfb1KRqXkt1TLcb55Y4nhDhZedb30e&s=10" alt="Водоспад Пробій" loading="lazy" decoding="async">
+        </div>
+        <div class="pm-body">
+          <h3 class="section-title fs-2">Водоспад Пробій</h3>
+          <p>
+            Пробій - один із найвідоміших водоспадів Карпат, розташований у центрі Ярємче на річці
+            Прут. Вода падає приблизно з 8 метрів вузькими потоками по кам'яних порогах. Поряд
+            працює ринок із сувенірами.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="fact">
+                <small>Висота падіння</small><b>~ 8 м</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Регіон</small><b>Ярємче</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Сезон</small><b>весь рік</b>
+              </div>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">Погода зараз</b><!--
+              --><iframe src="https://embed.windy.com/embed2.html?lat=48.45&lon=24.55&detailLat=48.45&detailLon=24.55&width=650&height=450&zoom=8&level=surface&overlay=temp&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" loading="lazy" title="Погода: Водоспад Пробій"></iframe>
+            </div>
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">На карті</b><!--
+              --><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=24.4300%2C48.3800%2C24.6700%2C48.5200&layer=mapnik&marker=48.45%2C24.55" loading="lazy" title="Карта: Водоспад Пробій"></iframe>
+            </div>
+          </div>
+          <div class="mt-2 text-end">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=48.45,24.55"
+              target="_blank"
+              rel="noopener"><i class="bi bi-geo-alt me-1"></i>Відкрити в Google Картах</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вікно місця: Драгобрат -->
+    <div class="pmodal" id="p5">
+      <a class="pm-bg" href="#places" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#places" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="https://winter.com.ua/wp-content/uploads/2025/04/dragobrat-1.jpg" alt="Драгобрат" loading="lazy" decoding="async">
+          <img src="https://winter.com.ua/wp-content/uploads/2025/04/dragobrat-21.jpg" alt="Драгобрат" loading="lazy" decoding="async">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgJByzJqJH_dnbxwMhbSco1a81_CMV6DTj-0GI3PfsogVRQlxJqrnep5cH&s=10" alt="Драгобрат" loading="lazy" decoding="async">
+        </div>
+        <div class="pm-body">
+          <h3 class="section-title fs-2">Драгобрат</h3>
+          <p>
+            Драгобрат - найвисокогірніший курорт України, розташований на висоті понад 1300 м. Сніг
+            тут лежить найдовше, тому катання триває до весни. Влітку відсюди стартують маршрути на
+            Свидовецький хребет та до озера Дзембронія.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="fact">
+                <small>Висота</small><b>1300–1700 м</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Регіон</small><b>Закарпаття</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Сезон</small><b>листопад – квітень</b>
+              </div>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">Погода зараз</b><!--
+              --><iframe src="https://embed.windy.com/embed2.html?lat=48.2481&lon=24.2519&detailLat=48.2481&detailLon=24.2519&width=650&height=450&zoom=8&level=surface&overlay=temp&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" loading="lazy" title="Погода: Драгобрат"></iframe>
+            </div>
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">На карті</b><!--
+              --><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=24.1319%2C48.1781%2C24.3719%2C48.3181&layer=mapnik&marker=48.2481%2C24.2519" loading="lazy" title="Карта: Драгобрат"></iframe>
+            </div>
+          </div>
+          <div class="mt-2 text-end">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=48.2481,24.2519"
+              target="_blank"
+              rel="noopener"><i class="bi bi-geo-alt me-1"></i>Відкрити в Google Картах</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вікно місця: Ворохта -->
+    <div class="pmodal" id="p6">
+      <a class="pm-bg" href="#places" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#places" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="https://etnotur.ua/wp-content/uploads/2016/04/Vorohta.jpg" alt="Ворохта" loading="lazy" decoding="async">
+          <img src="https://www.rbc.ua/static/img/i/m/img_4543_1300x820.jpg" alt="Ворохта" loading="lazy" decoding="async">
+          <img src="https://karpatytravel.net/wp-content/uploads/2021/04/screenshot_31-750x350.png" alt="Ворохта" loading="lazy" decoding="async">
+        </div>
+        <div class="pm-body">
+          <h3 class="section-title fs-2">Ворохта</h3>
+          <p>
+            Ворохта - гірське селище на річці Прут і одна з найстаріших локацій для відпочинку в
+            Карпатах. Звідси починаються маршрути на Говерлу та Петрос, поруч є залізнична станція й
+            гостьові будинки. Також тут відомі дерев'яна церква XVIII століття та традиційні
+            сироварні.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="fact">
+                <small>Висота</small><b>~ 800 м</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Регіон</small><b>Івано-Франківщина</b>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="fact">
+                <small>Сезон</small><b>весь рік</b>
+              </div>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">Погода зараз</b><!--
+              --><iframe src="https://embed.windy.com/embed2.html?lat=48.2833&lon=24.55&detailLat=48.2833&detailLon=24.55&width=650&height=450&zoom=8&level=surface&overlay=temp&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" loading="lazy" title="Погода: Ворохта"></iframe>
+            </div>
+            <div class="col-md-6 pm-frame">
+              <b class="d-block mb-2">На карті</b><!--
+              --><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=24.4300%2C48.2133%2C24.6700%2C48.3533&layer=mapnik&marker=48.2833%2C24.55" loading="lazy" title="Карта: Ворохта"></iframe>
+            </div>
+          </div>
+          <div class="mt-2 text-end">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=48.2833,24.55"
+              target="_blank"
+              rel="noopener"><i class="bi bi-geo-alt me-1"></i>Відкрити в Google Картах</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вікно маршруту: Говерла із Заросляка -->
+    <div class="pmodal" id="r1">
+      <a class="pm-bg" href="#routes" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#routes" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="hoverla1.jpg" alt="Говерла із Заросляка" loading="lazy" decoding="async">
+          <img src="https://karpatium.com.ua/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa0lIIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e9a7a5897607f1f82ebbdb0a2b775a64c0557823/%D0%B3%D0%BE%D0%B2%D0%B5%D1%80%D0%BB%D0%B0-%D0%B3%D0%BE%D1%80%D0%B0.jpeg" alt="Говерла із Заросляка" loading="lazy" decoding="async">
+          <img src="hoverla2.jpg" alt="Говерла із Заросляка" loading="lazy" decoding="async">
+        </div>
+        <div class="pm-body">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <span class="lvl d2">Середня</span>
+            <span class="dif d2">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+          </div>
+          <h3 class="section-title fs-2">Говерла із Заросляка</h3>
+          <p>
+            Класичний підйом на Говерлу (2061 м). Зелена стежка від Заросляка добре позначена,
+            пологіша за синю й підходить для першого разу. Достатньо середньої витривалості.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Старт</small><b>Заросляк</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Відстань</small><b>4,3 км в один бік</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Набір висоти</small><b>761 м</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Час</small><b>3–3,5 год вгору, 2–2,5 год вниз</b>
+              </div>
+            </div>
+          </div>
+          <h4 class="fs-5 mb-3">Хід маршруту</h4>
+          <ol class="steps">
+            <li>Старт біля турбази «Заросляк». Стежка йде долиною Пруту крізь смерековий ліс.</li>
+            <li>Вище межі лісу починаються високогірні луки та кам'янисті схили.</li>
+            <li>Фінальний підйом на вершину (2061 м) і панорама на Чорногору.</li>
+            <li>Спуск: тією самою зеленою стежкою або коротшою синьою (3,7 км, але значно крутішою).</li>
+          </ol>
+          <div class="note mb-4">
+            <b>Порада.</b> Для першого разу туристичні джерела радять підніматися зеленою стежкою, а
+            спускатися синьою. У свята та вихідні на стежці багато людей, тому виходь якомога
+            раніше.
+          </div>
+          <b class="d-block mb-2">Вершина на карті</b>
+          <div class="pm-frame">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=24.4502%2C48.1301%2C24.5502%2C48.1901&layer=mapnik&marker=48.1601%2C24.5002"
+              loading="lazy"
+              title="Карта: Говерла із Заросляка"></iframe>
+          </div>
+          <div class="d-flex flex-wrap gap-3 mt-3">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%B0%D1%80%D0%BE%D1%81%D0%BB%D1%8F%D0%BA%20%D1%82%D1%83%D1%80%D0%B1%D0%B0%D0%B7%D0%B0"
+              target="_blank"
+              rel="noopener"><i class="bi bi-flag me-1"></i>Старт на карті</a>
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/dir/?api=1&destination=%D0%97%D0%B0%D1%80%D0%BE%D1%81%D0%BB%D1%8F%D0%BA%20%D1%82%D1%83%D1%80%D0%B1%D0%B0%D0%B7%D0%B0&travelmode=driving"
+              target="_blank"
+              rel="noopener"><i class="bi bi-car-front me-1"></i>Як доїхати до старту</a>
+          </div>
+          <p class="small mt-3 mb-0" style="color:var(--muted)">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вікно маршруту: Шпиці через полонину Маришевську -->
+    <div class="pmodal" id="r2">
+      <a class="pm-bg" href="#routes" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#routes" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="https://www.active-rest.in.ua/wp-content/uploads/2024/08/Hora-Spitsi-marshrut-foto-jak-distatis.jpg" alt="Шпиці через полонину Маришевську" loading="lazy" decoding="async">
+          <img src="https://karpatytravel.net/wp-content/uploads/2021/09/241635182_1437763026606585_8065049352646383528_n-1-1024x768.jpg" alt="Шпиці через полонину Маришевську" loading="lazy" decoding="async">
+          <img
+            src="https://kosiv.life/files/tourcompany/Shpytsi/shputsi-1.jpg"
+            alt="Шпиці через полонину Маришевську"
+            loading="lazy"
+            decoding="async">
+        </div>
+        <div class="pm-body">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <span class="lvl d3">Складна</span>
+            <span class="dif d3">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+          </div>
+          <h3 class="section-title fs-2">Шпиці через полонину Маришевську</h3>
+          <p>
+            Шпиці (1863 м) входять до масиву Чорногора й відомі скелями висотою від 15 до 50 метрів,
+            схожими на списи чи вила. Маршрут довший за Говерлу, але менш людний.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Старт</small><b>Заросляк</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Відстань</small><b>до 8 км в один бік</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Висота</small><b>1863 м</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Час</small><b>7–8 год туди й назад</b>
+              </div>
+            </div>
+          </div>
+          <h4 class="fs-5 mb-3">Хід маршруту</h4>
+          <ol class="steps">
+            <li>Старт від турбази «Заросляк».</li>
+            <li>Шлях проходить через полонину Маришевську й альпійські луки, де влітку достигає чорниця.</li>
+            <li>Скелі Шпиць і вершина. Звідси видно Бребенескул, Говерлу, Петрос і Туркул.</li>
+            <li>
+              Повернення тією самою дорогою. Є варіант через озеро Несамовите для дводенного походу,
+              але спуск там складніший.
+            </li>
+          </ol>
+          <div class="note mb-4">
+            <b>Порада.</b> Одягни взуття з хорошим протектором, бо схили кам'янисті. Розрахуй час
+            так, щоб повернутися до темряви. Складність оцінена орієнтовно за довжиною маршруту.
+          </div>
+          <b class="d-block mb-2">Вершина на карті</b>
+          <div class="pm-frame">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=24.5181%2C48.0956%2C24.6181%2C48.1556&layer=mapnik&marker=48.1256%2C24.5681"
+              loading="lazy"
+              title="Карта: Шпиці через полонину Маришевську"></iframe>
+          </div>
+          <div class="d-flex flex-wrap gap-3 mt-3">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=%D0%97%D0%B0%D1%80%D0%BE%D1%81%D0%BB%D1%8F%D0%BA%20%D1%82%D1%83%D1%80%D0%B1%D0%B0%D0%B7%D0%B0"
+              target="_blank"
+              rel="noopener"><i class="bi bi-flag me-1"></i>Старт на карті</a>
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/dir/?api=1&destination=%D0%97%D0%B0%D1%80%D0%BE%D1%81%D0%BB%D1%8F%D0%BA%20%D1%82%D1%83%D1%80%D0%B1%D0%B0%D0%B7%D0%B0&travelmode=driving"
+              target="_blank"
+              rel="noopener"><i class="bi bi-car-front me-1"></i>Як доїхати до старту</a>
+          </div>
+          <p class="small mt-3 mb-0" style="color:var(--muted)">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вікно маршруту: Хом'як із Татарова -->
+    <div class="pmodal" id="r3">
+      <a class="pm-bg" href="#routes" aria-label="Закрити"></a>
+      <div class="pm-card">
+        <a class="pm-close" href="#routes" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <div class="pm-photos">
+          <img src="https://vidviday.ua/storage/media/tour/8091/mount-hamster-khomiak.jpg" alt="Хом'як із Татарова" loading="lazy" decoding="async">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8lbN54BAUlG21r8JOIIu8S3RMIFyrecqXhqshuTkSyv75piEFpyY1aNg&s=10" alt="Хом'як із Татарова" loading="lazy" decoding="async">
+          <img src="https://alp.com.ua/content/uploads/images/84-2_64d3fcae78bfe.jpg" alt="Хом'як із Татарова" loading="lazy" decoding="async">
+        </div>
+        <div class="pm-body">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <span class="lvl d1">Легка</span>
+            <span class="dif d1">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+          </div>
+          <h3 class="section-title fs-2">Хом'як із Татарова</h3>
+          <p>
+            Хом'як (1542 м) має дахоподібну форму, схожу на спину хом'яка, і лежить у
+            південно-східній частині Горган над селом Татарів. Це популярна вершина вихідного дня,
+            на яку піднімаються навіть родинами.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Старт</small><b>с. Татарів</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Набір висоти</small><b>з 705 до 1542 м</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Час</small><b>≈2,5 год в один бік</b>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="fact">
+                <small>Рівень</small><b>для початківців</b>
+              </div>
+            </div>
+          </div>
+          <h4 class="fs-5 mb-3">Хід маршруту</h4>
+          <ol class="steps">
+            <li>
+              Старт у селі Татарів, стежка йде вздовж потічка та за кілька годин виводить до
+              полонини Баранья.
+            </li>
+            <li>Далі лісом і заростями кучерявої сосни (жерепу) до кам'яних розсипів біля вершини.</li>
+            <li>На вершині панорама: Чорногора з Петросом і Говерлою, Довбушанка та Синяк.</li>
+            <li>Спуск: тією самою стежкою.</li>
+          </ol>
+          <div class="note mb-4">
+            <b>Порада.</b> Маршрут проходить територією Карпатського НПП, де на цій стежці запустили
+            пілотний електронний квиток. Перевір актуальні правила на сайті парку перед виходом.
+          </div>
+          <b class="d-block mb-2">Вершина на карті</b>
+          <div class="pm-frame">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=24.4592%2C48.3438%2C24.5392%2C48.3918&layer=mapnik&marker=48.3678%2C24.4992"
+              loading="lazy"
+              title="Карта: Хом'як із Татарова"></iframe>
+          </div>
+          <div class="d-flex flex-wrap gap-3 mt-3">
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/search/?api=1&query=%D1%81%D0%B5%D0%BB%D0%BE%20%D0%A2%D0%B0%D1%82%D0%B0%D1%80%D1%96%D0%B2%20%D0%AF%D1%80%D0%B5%D0%BC%D1%87%D0%B5"
+              target="_blank"
+              rel="noopener"><i class="bi bi-flag me-1"></i>Старт на карті</a>
+            <a
+              class="mapbtn"
+              href="https://www.google.com/maps/dir/?api=1&destination=%D1%81%D0%B5%D0%BB%D0%BE%20%D0%A2%D0%B0%D1%82%D0%B0%D1%80%D1%96%D0%B2%20%D0%AF%D1%80%D0%B5%D0%BC%D1%87%D0%B5&travelmode=driving"
+              target="_blank"
+              rel="noopener"><i class="bi bi-car-front me-1"></i>Як доїхати до старту</a>
+          </div>
+          <p class="small mt-3 mb-0" style="color:var(--muted)">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Фото на весь екран: Будинок -->
+    <div class="lb" id="g1">
+      <a class="pm-bg" href="#gallery" aria-label="Закрити"></a>
+      <figure>
+        <a class="pm-close" href="#gallery" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <a class="nv pv" href="#g6" aria-label="Назад">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+        <img src="house.jpg" alt="Будинок">
+        <a class="nv nx" href="#g2" aria-label="Далі">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        <figcaption>Будинок</figcaption>
+      </figure>
+    </div>
+
+    <!-- Фото на весь екран: Буковель -->
+    <div class="lb" id="g2">
+      <a class="pm-bg" href="#gallery" aria-label="Закрити"></a>
+      <figure>
+        <a class="pm-close" href="#gallery" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <a class="nv pv" href="#g1" aria-label="Назад">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+        <img src="bukovelnight.jpg" alt="Буковель">
+        <a class="nv nx" href="#g3" aria-label="Далі">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        <figcaption>Буковель</figcaption>
+      </figure>
+    </div>
+
+    <!-- Фото на весь екран: Ліс-->
+    <div class="lb" id="g3">
+      <a class="pm-bg" href="#gallery" aria-label="Закрити"></a>
+      <figure>
+        <a class="pm-close" href="#gallery" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <a class="nv pv" href="#g2" aria-label="Назад">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+        <img src="wood.jpg" alt="Ліс">
+        <a class="nv nx" href="#g4" aria-label="Далі">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        <figcaption>Ліс</figcaption>
+      </figure>
+    </div>
+
+    <!-- Фото на весь екран: Захід сонця-->
+    <div class="lb" id="g4">
+      <a class="pm-bg" href="#gallery" aria-label="Закрити"></a>
+      <figure>
+        <a class="pm-close" href="#gallery" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <a class="nv pv" href="#g3" aria-label="Назад">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+        <img src="zakat.jpg" alt="Захід сонця">
+        <a class="nv nx" href="#g5" aria-label="Далі">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        <figcaption>Захід сонця</figcaption>
+      </figure>
+    </div>
+
+    <!-- Фото на весь екран:Хмари над Говерлою -->
+    <div class="lb" id="g5">
+      <a class="pm-bg" href="#gallery" aria-label="Закрити"></a>
+      <figure>
+        <a class="pm-close" href="#gallery" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <a class="nv pv" href="#g4" aria-label="Назад">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+        <img src="clouds.jpg" alt="Хмари над Говерлою">
+        <a class="nv nx" href="#g6" aria-label="Далі">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        <figcaption>Хмари над Говерлою</figcaption>
+      </figure>
+    </div>
+
+    <!-- Фото на весь екран: Не робіть так! -->
+    <div class="lb" id="g6">
+      <a class="pm-bg" href="#gallery" aria-label="Закрити"></a>
+      <figure>
+        <a class="pm-close" href="#gallery" aria-label="Закрити">
+          <i class="bi bi-x-lg"></i>
+        </a>
+        <a class="nv pv" href="#g5" aria-label="Назад">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+        <img src="ya.jpg" alt="Не робіть так!">
+        <a class="nv nx" href="#g1" aria-label="Далі">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        <figcaption>Не робіть так!</figcaption>
+      </figure>
+    </div>
+  </body>
+</html>
